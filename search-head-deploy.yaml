@@ -44,7 +44,7 @@ spec:
             - name: SPLUNK_HOME
               value: /opt/splunk
             - name: SPLUNK_DEFAULTS_URL
-              value: http://splunk-defaults.splunk.svc.kub.n.tripadvisor.com/default.yml
+              value: <splunk default url>
             - name: SPLUNK_ROLE
               value: splunk_search_head
             - name: SPLUNK_PASSWORD
