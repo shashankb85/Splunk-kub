@@ -1,0 +1,105 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: search
+  labels:
+    app: splunk
+    role: splunk_search_head
+    tier: search
+spec:
+  replicas: 2
+  serviceName: search
+  selector:
+    matchLabels:
+      app: splunk
+      role: splunk_search_head
+      tier: search
+  template:
+    metadata:
+      labels:
+        app: splunk
+        role: splunk_search_head
+        tier: search
+    spec:
+      hostname: search
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: search
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+      dnsPolicy: ClusterFirst
+      dnsConfig:
+        searches:
+          - indexer.splunk.svc.cluster.local
+      containers:
+        - name: search
+          image: splunk/splunk:latest
+          imagePullPolicy: Always
+          env:
+            - name: SPLUNK_HOME
+              value: /opt/splunk
+            - name: SPLUNK_DEFAULTS_URL
+              value: http://splunk-defaults.splunk.svc.kub.n.tripadvisor.com/default.yml
+            - name: SPLUNK_ROLE
+              value: splunk_search_head
+            - name: SPLUNK_PASSWORD
+              value: <password>
+            - name: JAVA_VERSION
+              value: "openjdk:11"
+            - name: SPLUNK_START_ARGS
+              value: "--accept-license"
+            - name: SPLUNK_CLUSTER_MASTER_URL
+              value: master
+            - name: SPLUNK_INDEXER_URL
+              value: indexer-0,indexer-1,indexer-2,indexer-3,indexer-4,indexer-5,indexer-6,indexer-7,indexer-8,indexer-9
+            - name: SPLUNK_SEARCH_HEAD_URL
+              value: search
+            - name: DEBUG
+              value: "true"
+          ports:
+            - name: web
+              containerPort: 8000
+            - name: mgmt
+              containerPort: 8089
+            - name: kv
+              containerPort: 8191
+            - name: data
+              containerPort: 9998
+          volumeMounts:
+            - name: splunk-search-data
+              mountPath: /opt/splunk/var
+            - name: splunk-search-config
+              mountPath: /opt/splunk/etc
+          resources:
+            limits:
+              cpu: 4
+              memory: 12Gi
+            requests:
+              cpu: 4
+              memory: 12Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: splunk-search-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 85Gi
+        storageClassName: k8s-lpv-ssd-r0
+        volumeMode: Filesystem
+    - metadata:
+        name: splunk-search-config
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: k8s-lpv-ssd-r0
+        volumeMode: Filesystem
