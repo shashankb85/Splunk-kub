@@ -1,0 +1,402 @@
+ansible-playbook 2.9.2
+  config file = /opt/ansible/ansible.cfg
+  configured module search path = [u'/opt/ansible/library', u'/opt/ansible/apps/library', u'/opt/ansible/ansible_commands']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible-playbook
+  python version = 2.7.16 (default, Sep  3 2019, 19:05:58) [GCC 8.3.1 20190507 (Red Hat 8.3.1-4)]
+{
+    "_meta": {
+        "hostvars": {
+            "localhost": {
+                "ansible_connection": "local"
+            }
+        }
+    }, 
+    "all": {
+        "children": [
+            "ungrouped"
+        ], 
+        "hosts": [
+            "localhost"
+        ], 
+        "vars": {
+            "ansible_post_tasks": null, 
+            "ansible_pre_tasks": null, 
+            "ansible_ssh_user": "splunk", 
+            "cert_prefix": "https", 
+            "config": {
+                "baked": "default.yml", 
+                "defaults_dir": "/tmp/defaults", 
+                "env": {
+                    "headers": null, 
+                    "var": "SPLUNK_DEFAULTS_URL", 
+                    "verify": true
+                }, 
+                "host": {
+                    "headers": null, 
+                    "url": null, 
+                    "verify": true
+                }, 
+                "max_delay": 60, 
+                "max_retries": 3, 
+                "max_timeout": 1200
+            }, 
+            "delay_num": 3, 
+            "docker_version": "18.06.0", 
+            "hide_password": false, 
+            "java_download_url": "https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz", 
+            "java_update_version": "11.0.2", 
+            "java_version": "openjdk:11", 
+            "retry_num": 50, 
+            "shc_bootstrap_delay": 30, 
+            "splunk": {
+                "admin_user": "admin", 
+                "allow_upgrade": true, 
+                "app_paths": {
+                    "default": "/opt/splunk/etc/apps", 
+                    "deployment": "/opt/splunk/etc/deployment-apps", 
+                    "httpinput": "/opt/splunk/etc/apps/splunk_httpinput", 
+                    "idxc": "/opt/splunk/etc/master-apps", 
+                    "shc": "/opt/splunk/etc/shcluster/apps"
+                }, 
+                "apps_location": [], 
+                "build_location": null, 
+                "build_remote_src": false, 
+                "deployer_included": false, 
+                "dfs": {
+                    "dfc_num_slots": 4, 
+                    "dfw_num_slots": 10, 
+                    "dfw_num_slots_enabled": false, 
+                    "enable": false, 
+                    "port": 9000, 
+                    "spark_master_host": "127.0.0.1", 
+                    "spark_master_webui_port": 8080
+                }, 
+                "enable_service": false, 
+                "exec": "/opt/splunk/bin/splunk", 
+                "group": "splunk", 
+                "hec_disabled": 0, 
+                "hec_enableSSL": 1, 
+                "hec_port": 8088, 
+                "hec_token": "<token>", 
+                "home": "/opt/splunk", 
+                "hostname": “<hostname>”, 
+                "http_enableSSL": 1, 
+                "http_enableSSL_cert": null, 
+                "http_enableSSL_privKey": null, 
+                "http_enableSSL_privKey_password": null, 
+                "http_port": 8000, 
+                "idxc": {
+                    "enable": false, 
+                    "label": "idxc_label", 
+                    "replication_factor": 2, 
+                    "replication_port": 9887, 
+                    "search_factor": 2, 
+                    "secret": "**************"
+                }, 
+                "ignore_license": false, 
+                "indexer_cluster": true, 
+                "license_download_dest": "/tmp/splunk.lic", 
+                "license_master_included": false, 
+                "license_uri": "splunk.lic", 
+                "multisite_replication_factor_origin": 3, 
+                "multisite_replication_factor_total": 3, 
+                "multisite_search_factor_origin": 3, 
+                "multisite_search_factor_total": 3, 
+                "nfr_license": "/tmp/nfr_enterprise.lic", 
+                "opt": "/opt", 
+                "password": "**************", 
+                "pid": "/opt/splunk/var/run/splunk/splunkd.pid", 
+                "preferred_captaincy": true, 
+                "role": "splunk_search_head", 
+                "root_endpoint": null, 
+                "s2s_enable": true, 
+                "s2s_port": 9997, 
+                "search_head_cluster": false, 
+                "search_head_cluster_url": null, 
+                "secret": null, 
+                "service_name": "splunk", 
+                "shc": {
+                    "enable": false, 
+                    "label": "shc_label", 
+                    "replication_factor": 2, 
+                    "replication_port": 9887, 
+                    "secret": "**************"
+                }, 
+                "smartstore": null, 
+                "svc_port": 8089, 
+                "tar_dir": "splunk", 
+                "user": "splunk", 
+                "wildcard_license": false
+            }, 
+            "splunk_home_ownership_enforcement": true
+        }
+    }, 
+    "splunk_cluster_master": {
+        "hosts": [
+            "master"
+        ]
+    }, 
+    "splunk_indexer": {
+        "hosts": [
+            "indexer-0", 
+            "indexer-1", 
+            "indexer-2", 
+            "indexer-3", 
+            "indexer-4", 
+            "indexer-5", 
+            "indexer-6", 
+            "indexer-7", 
+            "indexer-8", 
+            "indexer-9"
+        ]
+    }, 
+    "splunk_search_head": {
+        "hosts": [
+            "search"
+        ]
+    }, 
+    "ungrouped": {
+        "hosts": []
+    }
+}
+
+PLAY [Run default Splunk provisioning] *****************************************
+Monday 03 February 2020  14:53:58 +0000 (0:00:00.121)       0:00:00.121 ******* 
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+Monday 03 February 2020  14:54:00 +0000 (0:00:01.954)       0:00:02.076 ******* 
+Monday 03 February 2020  14:54:00 +0000 (0:00:00.079)       0:00:02.156 ******* 
+Monday 03 February 2020  14:54:00 +0000 (0:00:00.070)       0:00:02.226 ******* 
+Monday 03 February 2020  14:54:00 +0000 (0:00:00.193)       0:00:02.420 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/get_facts.yml for localhost
+Monday 03 February 2020  14:54:00 +0000 (0:00:00.183)       0:00:02.604 ******* 
+
+TASK [splunk_common : Set privilege escalation user] ***************************
+ok: [localhost]
+Monday 03 February 2020  14:54:00 +0000 (0:00:00.045)       0:00:02.649 ******* 
+
+TASK [splunk_common : Check for existing installation] *************************
+ok: [localhost]
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.313)       0:00:02.963 ******* 
+
+TASK [splunk_common : Set splunk install fact] *********************************
+ok: [localhost]
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.050)       0:00:03.014 ******* 
+
+TASK [splunk_common : Check for existing splunk secret] ************************
+ok: [localhost]
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.154)       0:00:03.168 ******* 
+
+TASK [splunk_common : Set first run fact] **************************************
+ok: [localhost]
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.046)       0:00:03.215 ******* 
+
+TASK [splunk_common : Check if we are in a docker] *****************************
+ok: [localhost]
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.157)       0:00:03.372 ******* 
+
+TASK [splunk_common : Set docker fact] *****************************************
+ok: [localhost]
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.063)       0:00:03.435 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/get_facts_build_type.yml for localhost
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.129)       0:00:03.565 ******* 
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.050)       0:00:03.615 ******* 
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.046)       0:00:03.661 ******* 
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.048)       0:00:03.710 ******* 
+Monday 03 February 2020  14:54:01 +0000 (0:00:00.048)       0:00:03.758 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.050)       0:00:03.809 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/get_facts_target_version.yml for localhost
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.094)       0:00:03.903 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.042)       0:00:03.946 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.041)       0:00:03.988 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.041)       0:00:04.029 ******* 
+
+TASK [splunk_common : Find manifests] ******************************************
+ok: [localhost]
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.359)       0:00:04.388 ******* 
+
+TASK [splunk_common : Set current version fact] ********************************
+ok: [localhost]
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.048)       0:00:04.437 ******* 
+
+TASK [splunk_common : Setting upgrade fact] ************************************
+ok: [localhost]
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.046)       0:00:04.483 ******* 
+
+TASK [splunk_common : Setting indexer cluster fact from config] ****************
+ok: [localhost]
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.050)       0:00:04.533 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.042)       0:00:04.576 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.045)       0:00:04.622 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.043)       0:00:04.665 ******* 
+
+TASK [splunk_common : Setting forward servers fact from index cluster group] ***
+ok: [localhost]
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.052)       0:00:04.718 ******* 
+Monday 03 February 2020  14:54:02 +0000 (0:00:00.048)       0:00:04.766 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/change_splunk_directory_owner.yml for localhost
+Monday 03 February 2020  14:54:03 +0000 (0:00:00.109)       0:00:04.875 ******* 
+
+TASK [splunk_common : Update Splunk directory owner] ***************************
+changed: [localhost]
+Monday 03 February 2020  14:54:07 +0000 (0:00:04.369)       0:00:09.244 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/update_etc.yml for localhost
+Monday 03 February 2020  14:54:07 +0000 (0:00:00.121)       0:00:09.366 ******* 
+
+TASK [splunk_common : Check if /sbin/updateetc.sh exists] **********************
+ok: [localhost]
+Monday 03 February 2020  14:54:07 +0000 (0:00:00.173)       0:00:09.540 ******* 
+
+TASK [splunk_common : Update /opt/splunk/etc] **********************************
+ok: [localhost]
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.841)       0:00:10.381 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.043)       0:00:10.425 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.044)       0:00:10.470 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.047)       0:00:10.517 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.045)       0:00:10.563 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.048)       0:00:10.611 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.046)       0:00:10.658 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.045)       0:00:10.703 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.047)       0:00:10.750 ******* 
+Monday 03 February 2020  14:54:08 +0000 (0:00:00.051)       0:00:10.802 ******* 
+Monday 03 February 2020  14:54:09 +0000 (0:00:00.048)       0:00:10.851 ******* 
+Monday 03 February 2020  14:54:09 +0000 (0:00:00.049)       0:00:10.901 ******* 
+Monday 03 February 2020  14:54:09 +0000 (0:00:00.045)       0:00:10.946 ******* 
+Monday 03 February 2020  14:54:09 +0000 (0:00:00.050)       0:00:10.997 ******* 
+Monday 03 February 2020  14:54:09 +0000 (0:00:00.049)       0:00:11.046 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/start_splunk.yml for localhost
+Monday 03 February 2020  14:54:09 +0000 (0:00:00.274)       0:00:11.321 ******* 
+
+TASK [splunk_common : Get Splunk status] ***************************************
+ok: [localhost]
+Monday 03 February 2020  14:54:18 +0000 (0:00:09.312)       0:00:20.634 ******* 
+
+TASK [splunk_common : Cleanup Splunk runtime files] ****************************
+ok: [localhost] => (item=/opt/splunk/var/run/splunk/splunkd.pid)
+changed: [localhost] => (item=/opt/splunk/var/lib/splunk/kvstore/mongo/mongod.lock)
+Monday 03 February 2020  14:54:19 +0000 (0:00:00.302)       0:00:20.936 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/restrict_permissions.yml for localhost
+Monday 03 February 2020  14:54:19 +0000 (0:00:00.095)       0:00:21.032 ******* 
+
+TASK [splunk_common : Check if /opt/splunk/var/lib/splunk/kvstore/mongo/splunk.key exists] ***
+ok: [localhost]
+Monday 03 February 2020  14:54:19 +0000 (0:00:00.164)       0:00:21.196 ******* 
+
+TASK [splunk_common : Restrict permissions on /opt/splunk/var/lib/splunk/kvstore/mongo/splunk.key] ***
+ok: [localhost]
+Monday 03 February 2020  14:54:19 +0000 (0:00:00.166)       0:00:21.363 ******* 
+
+TASK [splunk_common : Start Splunk via cli] ************************************
+changed: [localhost]
+Monday 03 February 2020  14:54:40 +0000 (0:00:21.226)       0:00:42.590 ******* 
+Monday 03 February 2020  14:54:40 +0000 (0:00:00.108)       0:00:42.698 ******* 
+Monday 03 February 2020  14:54:41 +0000 (0:00:00.109)       0:00:42.808 ******* 
+
+TASK [splunk_common : Wait for splunkd management port] ************************
+ok: [localhost]
+Monday 03 February 2020  14:54:41 +0000 (0:00:00.671)       0:00:43.479 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/set_certificate_prefix.yml for localhost
+Monday 03 February 2020  14:54:41 +0000 (0:00:00.192)       0:00:43.671 ******* 
+
+TASK [splunk_common : Test basic https endpoint] *******************************
+ok: [localhost]
+Monday 03 February 2020  14:54:42 +0000 (0:00:01.049)       0:00:44.721 ******* 
+
+TASK [splunk_common : Set url prefix for future REST calls] ********************
+ok: [localhost]
+Monday 03 February 2020  14:54:42 +0000 (0:00:00.066)       0:00:44.788 ******* 
+Monday 03 February 2020  14:54:43 +0000 (0:00:00.065)       0:00:44.853 ******* 
+Monday 03 February 2020  14:54:43 +0000 (0:00:00.048)       0:00:44.901 ******* 
+Monday 03 February 2020  14:54:43 +0000 (0:00:00.058)       0:00:44.960 ******* 
+Monday 03 February 2020  14:54:43 +0000 (0:00:00.048)       0:00:45.009 ******* 
+included: /opt/ansible/roles/splunk_search_head/tasks/peer_cluster_master.yml for localhost
+Monday 03 February 2020  14:54:43 +0000 (0:00:00.090)       0:00:45.099 ******* 
+included: /opt/ansible/roles/splunk_search_head/tasks/../../../roles/splunk_common/tasks/wait_for_splunk_instance.yml for localhost
+Monday 03 February 2020  14:54:43 +0000 (0:00:00.081)       0:00:45.181 ******* 
+
+TASK [splunk_search_head : Check Splunk instance is running] *******************
+ok: [localhost]
+Monday 03 February 2020  14:54:43 +0000 (0:00:00.392)       0:00:45.574 ******* 
+
+TASK [splunk_search_head : Set cluster master as a search peer] ****************
+changed: [localhost]
+Monday 03 February 2020  14:54:48 +0000 (0:00:04.892)       0:00:50.466 ******* 
+Monday 03 February 2020  14:54:48 +0000 (0:00:00.116)       0:00:50.582 ******* 
+included: /opt/ansible/roles/splunk_search_head/tasks/../../../roles/splunk_common/tasks/enable_forwarding.yml for localhost
+Monday 03 February 2020  14:54:49 +0000 (0:00:00.299)       0:00:50.882 ******* 
+
+TASK [splunk_search_head : Setup indexer discovery for index-clustering] *******
+ok: [localhost]
+Monday 03 February 2020  14:54:50 +0000 (0:00:01.375)       0:00:52.257 ******* 
+
+TASK [splunk_search_head : Setup tcpout group for index-clustering] ************
+ok: [localhost]
+Monday 03 February 2020  14:54:51 +0000 (0:00:01.527)       0:00:53.785 ******* 
+
+TASK [splunk_search_head : Setup default tcpout group for index-clustering] ****
+changed: [localhost]
+Monday 03 February 2020  14:54:53 +0000 (0:00:01.792)       0:00:55.578 ******* 
+Monday 03 February 2020  14:54:53 +0000 (0:00:00.199)       0:00:55.777 ******* 
+
+TASK [splunk_search_head : Disable indexing on the current node] ***************
+ok: [localhost]
+Monday 03 February 2020  14:54:55 +0000 (0:00:01.400)       0:00:57.177 ******* 
+Monday 03 February 2020  14:54:55 +0000 (0:00:00.184)       0:00:57.362 ******* 
+Monday 03 February 2020  14:54:55 +0000 (0:00:00.193)       0:00:57.555 ******* 
+Monday 03 February 2020  14:54:55 +0000 (0:00:00.201)       0:00:57.757 ******* 
+Monday 03 February 2020  14:54:56 +0000 (0:00:00.122)       0:00:57.880 ******* 
+included: /opt/ansible/roles/splunk_search_head/tasks/../../../roles/splunk_common/tasks/check_for_required_restarts.yml for localhost
+Monday 03 February 2020  14:54:56 +0000 (0:00:00.292)       0:00:58.172 ******* 
+
+TASK [splunk_search_head : Check for required restarts] ************************
+ok: [localhost]
+Monday 03 February 2020  14:54:57 +0000 (0:00:01.305)       0:00:59.478 ******* 
+Monday 03 February 2020  14:54:57 +0000 (0:00:00.202)       0:00:59.680 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/check_for_required_restarts.yml for localhost
+Monday 03 February 2020  14:54:58 +0000 (0:00:00.291)       0:00:59.971 ******* 
+
+TASK [Check for required restarts] *********************************************
+ok: [localhost]
+Monday 03 February 2020  14:54:59 +0000 (0:00:01.487)       0:01:01.459 ******* 
+included: /opt/ansible/roles/splunk_common/tasks/../handlers/restart_splunk.yml for localhost
+Monday 03 February 2020  14:54:59 +0000 (0:00:00.306)       0:01:01.766 ******* 
+
+RUNNING HANDLER [splunk_common : Restart the splunkd service - Via CLI] ********
+changed: [localhost]
+Monday 03 February 2020  14:55:22 +0000 (0:00:22.101)       0:01:23.868 ******* 
+Monday 03 February 2020  14:55:22 +0000 (0:00:00.188)       0:01:24.057 ******* 
+Monday 03 February 2020  14:55:22 +0000 (0:00:00.113)       0:01:24.170 ******* 
+
+RUNNING HANDLER [splunk_common : Wait for splunkd management port] *************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=48   changed=6    unreachable=0    failed=0    skipped=43   rescued=0    ignored=0   
+
+Monday 03 February 2020  14:55:22 +0000 (0:00:00.503)       0:01:24.674 ******* 
+=============================================================================== 
+splunk_common : Restart the splunkd service - Via CLI ------------------ 22.10s
+splunk_common : Start Splunk via cli ----------------------------------- 21.23s
+splunk_common : Get Splunk status --------------------------------------- 9.31s
+splunk_search_head : Set cluster master as a search peer ---------------- 4.89s
+splunk_common : Update Splunk directory owner --------------------------- 4.37s
+Gathering Facts --------------------------------------------------------- 1.95s
+splunk_search_head : Setup default tcpout group for index-clustering ---- 1.87s
+splunk_search_head : Setup tcpout group for index-clustering ------------ 1.53s
+Check for required restarts --------------------------------------------- 1.49s
+splunk_search_head : Disable indexing on the current node --------------- 1.40s
+splunk_search_head : Setup indexer discovery for index-clustering ------- 1.38s
+splunk_search_head : Check for required restarts ------------------------ 1.31s
+splunk_common : Test basic https endpoint ------------------------------- 1.05s
+splunk_common : Update /opt/splunk/etc ---------------------------------- 0.84s
+splunk_common : Wait for splunkd management port ------------------------ 0.67s
+splunk_common : Wait for splunkd management port ------------------------ 0.50s
+splunk_search_head : Check Splunk instance is running ------------------- 0.39s
+splunk_common : Find manifests ------------------------------------------ 0.36s
+splunk_common : Check for existing installation ------------------------- 0.31s
+splunk_common : Restart the splunkd service ----------------------------- 0.31s
+===============================================================================
+
+Ansible playbook complete, will begin streaming var/log/splunk/splunkd_stderr.log
